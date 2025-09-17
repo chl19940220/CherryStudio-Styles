@@ -1,0 +1,935 @@
+/* CherryYou主题 CSS - MessageTokens.tsx */
+@import url("https://fonts.googleapis.com/css2?family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@700&display=swap");
+@import url("http://cdn.bootcdn.net/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/style.min.css");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+/* JetBrains Mono 字体导入 */
+:root {
+    /* MaterialYou基础尺寸 */
+  --material-line-width: 0.3px;
+  --container-border-radius: 15px;
+  --list-item-border-radius: 8px;
+
+  /* 过渡时间 */
+  --duration-fast: 0.2s;
+  --duration-normal: 0.3s;
+  --easing-ease: ease;
+
+  /* Material You/Nord 配色（深色模式默认） */
+  --color-material-accent: #88C0D0;
+  --color-material-accent-bright: #8FBCBB;
+  --color-material-accent-purple: #B48EAD;
+  --color-material-accent-rgb: 136,
+    192,
+    208;
+  --color-material-accent-purple-rgb: 180,
+    142,
+    173;
+
+  /* 线条 */
+  --color-material-line: rgba(var(--color-material-accent-rgb), .7);
+  --color-material-line-dim: rgba(var(--color-material-accent-rgb), .3);
+
+  /* 背景颜色 (增加壁纸可见度) */
+  --color-background: transparent;
+  --color-background-soft: rgba(59,
+    66,
+    82, .7);
+  --color-background-mute: rgba(67,
+    76,
+    94, .75);
+  --navbar-background: transparent;
+  --chat-background: transparent;
+  --chat-background-user: rgba(46,
+    52,
+    64, .7);
+  --chat-background-assistant: rgba(46,
+    52,
+    64, .7);
+  --chat-customize-collapse-background: rgba(46,
+    52,
+    64, .6);
+  --color-background-opacity: rgba(46,
+    52,
+    64, .85);
+  --color-background-rgb: 46,
+    52,
+    64;
+  --antd-arrow-background-color: rgba(67,
+    76,
+    94, .8);
+
+  /* 文本颜色 */
+  --chat-text-user: #E5E9F0;
+  --color-text-1: rgb(197,
+    232,
+    246);
+  --color-text-2: #D8DEE9;
+  --chat-customize-codeHeader: #D8DEE9;
+  --color-black: #2E3440;
+  --color-white: #ECEFF4;
+
+  /* 阴影颜色 */
+  --chat-customize-box-shadow: 0 1px 3px rgba(0,
+    0,
+    0, .06),
+    0 1px 2px rgba(0,
+    0,
+    0, .1);
+  --chat-customize-box-shadow2: none;
+  --chat-customize-box-shadow3: inset 0 1px 2px rgba(0,
+    0,
+    0, .1);
+  --chat-customize-box-shadow4: inset 0 0 0 1px rgba(var(--color-material-accent-rgb), .3);
+
+  /* 其他变量 */
+  --color-black-rgb: 46,
+    52,
+    64;
+  --color-white-rgb: 236,
+    239,
+    244;
+}
+
+body {
+  font-family: "Audiowide",
+    "Noto Sans SC",
+    "LXGW WenKai Screen", sans-serif !important;
+  letter-spacing: .03em;
+  line-height: 1.4;
+}
+/* --- 字体栈 --- */
+/* UI 字体 */
+.ant-modal-content,
+.ant-popover-inner,
+div[class^="InputContainer-"],
+div[class^="OutputContainer-"],
+div[class^="HistoryContainner-"],
+.ant-notification-notice,
+.ant-message-notice-content,
+.ant-drawer-content,
+.ant-collapse-content-box,
+.ant-modal-body .ant-input-affix-wrapper input,
+.ant-segmented-group .ant-segmented-item-label,
+.ant-btn,
+.ant-dropdown-trigger,
+.ant-modal-header .ant-modal-title,
+.ant-collapse-header,
+li[class^="MenuItem-"],
+#content-container [class^="ListItemContainer-"],
+div[class^="SettingGroup-"] label,
+.ant-tooltip-inner,
+.markdown th,
+.ant-table-thead>tr>th,
+.markdown pre [class^="CodeHeader-"] {
+  font-family: "Noto Sans SC", sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+/* Markdown 标题字体 */
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  font-family: "Audiowide", sans-serif !important;
+  font-weight: 700 !important;
+  letter-spacing: .08em;
+}
+/* 阅读区域字体 */
+.bubble .message-content-container,
+.inputbar-container textarea,
+.ant-modal .ant-modal-body,
+.ant-table-tbody>tr>td,
+.markdown blockquote,
+.markdown table,
+.markdown p,
+.markdown li,
+.markdown strong,
+.markdown b,
+.markdown em,
+.markdown i {
+  font-family: "LXGW WenKai Screen", sans-serif !important;
+  letter-spacing: .03em !important;
+  line-height: 1.4 !important;
+}
+/* 代码字体 */
+code,
+pre,
+.markdown pre [class^="CodeContent-"] * {
+  font-family: 'JetBrains Mono', monospace !important;
+  font-weight: 500 !important;
+  letter-spacing: normal !important;
+  line-height: 1.45 !important;
+  font-size: 1.1em !important;
+}
+/* --- 主题模式 --- */
+body[theme-mode="dark"] {
+  background-image: url('https://w.wallhaven.cc/full/3k/wallhaven-3kwdw6.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body[theme-mode="light"] {
+    /* Material You/Nord 配色（浅色模式） */
+  --color-material-accent: #81A1C1;
+  --color-material-accent-bright: #5E81AC;
+  --color-material-accent-purple: #B48EAD;
+  --color-material-accent-rgb: 129,
+    161,
+    193;
+  --color-material-accent-purple-rgb: 180,
+    142,
+    173;
+
+  /* 线条 */
+  --color-material-line: rgba(var(--color-material-accent-rgb), .3);
+  --color-material-line-dim: rgba(var(--color-material-accent-rgb), .1);
+
+  /* 背景颜色 (增加壁纸可见度) */
+  --color-background: transparent;
+  --color-background-soft: rgba(236,
+    239,
+    244, .6);
+  --color-background-mute: rgba(229,
+    233,
+    240, .6);
+  --navbar-background: transparent;
+  --chat-background: transparent;
+  --chat-background-user: rgba(245,
+    248,
+    251, .7);
+  --chat-background-assistant: rgba(245,
+    248,
+    251, .7);
+  --chat-customize-collapse-background: rgba(236,
+    239,
+    244, .85);
+  --color-background-opacity: rgba(245,
+    248,
+    251, .8);
+  --color-background-rgb: 245,
+    248,
+    251;
+  --antd-arrow-background-color: rgba(229,
+    233,
+    240, .85);
+
+  /* 文本颜色 */
+  --chat-text-user: #4C566A;
+  --color-text-1: #2E3440;
+  --color-text-2: #4C566A;
+  --chat-customize-codeHeader: #4C566A;
+  --color-white: #FFFFFF;
+  --color-black: #2E3440;
+
+  /* 其他变量 */
+  --color-black-rgb: 46,
+    52,
+    64;
+  --color-white-rgb: 255,
+    255,
+    255;
+
+  background-image: url('https://w.wallhaven.cc/full/n6/wallhaven-n688ql.jpg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  /* 浅色模式覆盖 */
+  .inputbar-container .ant-btn:hover {
+    background-color: rgba(var(--color-material-accent-rgb), .15) !important;
+    border-color: var(--color-material-line) !important;
+    }
+
+  .markdown pre [class^="CodeBlockWrapper-"],
+  .markdown table {
+    border-color: var(--color-material-line) !important;
+    }
+
+  .markdown pre [class^="CodeHeader-"] {
+    background-color: rgba(var(--color-white-rgb), .95) !important;
+    background-image: none !important;
+    color: var(--color-text-2);
+    }
+
+  .markdown pre [class^="CodeHeader-"]::after {
+    background: linear-gradient(90deg, transparent, var(--color-material-line));
+    opacity: .8;
+    z-index: 1;
+    }
+}
+/* == 全局组件样式 == */
+/* 通用容器 */
+.inputbar-container,
+.ant-popover-inner,
+div[class^="InputContainer-"],
+div[class^="OutputContainer-"],
+div[class^="HistoryContainner-"],
+.ant-notification-notice,
+.ant-message-notice-content,
+.ant-drawer-content,
+.ant-modal .ant-modal-content,
+div[class^="AgentCardContainer-"],
+.ant-table-wrapper,
+.ant-collapse-item {
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow);
+  background: var(--color-background-opacity) !important;
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+  overflow: hidden;
+  position: relative;
+  transition: background-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease), border-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+/* 输入框区域 */
+.inputbar-container textarea {
+  resize: none;
+  color: var(--color-text-1) !important;
+  background-color: transparent !important;
+}
+
+.inputbar-container textarea:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+/* 输入栏按钮 */
+.inputbar-container .ant-btn {
+  color: var(--color-text-1) !important;
+  background-color: rgba(var(--color-black-rgb), .08) !important;
+  border-color: var(--color-material-line-dim) !important;
+  box-shadow: none !important;
+  position: relative;
+  overflow: hidden;
+  border-width: var(--material-line-width) !important;
+  border-radius: var(--list-item-border-radius) !important;
+  transition: background-color var(--duration-fast) var(--easing-ease), border-color var(--duration-fast) var(--easing-ease), color var(--duration-fast) var(--easing-ease);
+}
+
+.inputbar-container .ant-btn .anticon,
+.inputbar-container .ant-btn .iconfont {
+  color: var(--color-text-1) !important;
+  transition: color var(--duration-fast) var(--easing-ease);
+}
+/* 按钮 Hover */
+.inputbar-container .ant-btn:hover {
+  background-color: rgba(var(--color-white-rgb), .12) !important;
+  border-color: var(--color-material-accent) !important;
+  color: var(--color-material-accent) !important;
+}
+
+.inputbar-container .ant-btn:hover .anticon,
+.inputbar-container .ant-btn:hover .iconfont {
+  color: var(--color-material-accent) !important;
+}
+/* Dropdown Trigger */
+.ant-dropdown-trigger {
+  background-color: transparent !important;
+  border: transparent !important;
+  box-shadow: none;
+  position: relative;
+  color: var(--color-text-2);
+  transition: color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-dropdown-trigger:hover {
+  color: var(--color-text-1);
+}
+
+.ant-dropdown-trigger.active {
+  color: var(--color-material-accent-bright) !important;
+}
+
+.active .menu {
+  background-color: transparent !important;
+  border-radius: var(--list-item-border-radius);
+}
+/* 消息气泡容器 */
+.bubble .message-content-container {
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow);
+  background-color: var(--chat-background-assistant) !important;
+  position: relative;
+  overflow: hidden;
+  transition: background-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease);
+}
+/* 气泡容器 ::before 边框 */
+.bubble .message-content-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+  border-radius: var(--container-border-radius) !important;
+  pointer-events: none;
+}
+/* 气泡底部渐变线 */
+.bubble .message-content-container::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-material-accent));
+  opacity: .8;
+  z-index: 2;
+  transition: background var(--duration-normal) var(--easing-ease);
+}
+/* 模态框特定样式 */
+.ant-modal .ant-modal-content {
+  border: 1px solid var(--color-material-accent);
+  color: var(--color-text-1);
+}
+
+.ant-modal .ant-modal-content::before,
+.ant-modal .ant-modal-content::after {
+  display: none;
+}
+
+.ant-modal-header {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--color-material-accent);
+  border-radius: var(--container-border-radius) var(--container-border-radius) 0 0 !important;
+  padding: 16px 24px;
+  color: var(--color-text-1) !important;
+  position: relative;
+  transition: border-color var(--duration-normal) var(--easing-ease);
+}
+
+.ant-modal-title {
+  color: var(--color-text-1) !important;
+}
+/* 模态框头部渐变线 */
+.ant-modal-header::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: 0;
+  width: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-material-accent));
+  opacity: .6;
+  z-index: 1;
+  transition: background var(--duration-normal) var(--easing-ease);
+}
+/* Agent/卡片信息 */
+div[class^="AgentCardContainer-"] div[class^="CardInfo-"],
+.ant-modal-confirm-content div[class^="AgentPrompt-"] {
+  background: var(--chat-customize-collapse-background) !important;
+  box-shadow: var(--chat-customize-box-shadow3) !important;
+  color: var(--color-text-1);
+  border-radius: var(--list-item-border-radius) !important;
+  transition: background-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease);
+}
+/* 为 CardInfo 添加边框 */
+div[class^="AgentCardContainer-"] div[class^="CardInfo-"] {
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+}
+/* --- 菜单项 / 列表项 / 分段选择标签 --- */
+li[class^="MenuItem-"],
+#content-container [class^="ListItemContainer-"],
+.ant-segmented-group .ant-segmented-item-label {
+  border: 0 !important;
+  box-sizing: border-box;
+  border-radius: var(--list-item-border-radius) !important;
+  color: var(--color-text-2);
+  position: relative;
+  background-color: transparent !important;
+  transition: background-color var(--duration-fast) var(--easing-ease), color var(--duration-fast) var(--easing-ease), box-shadow var(--duration-fast) var(--easing-ease), border-left-color var(--duration-fast) var(--easing-ease);
+}
+/* Active 状态 */
+li[class^="MenuItem-"].active,
+#content-container [class^="ListItemContainer-"].active,
+.ant-segmented-group .ant-segmented-item-label[aria-selected="true"] {
+  box-shadow: var(--chat-customize-box-shadow4) !important;
+  background: var(--color-background-soft) !important;
+  color: var(--color-text-1);
+  border-left: 2px solid var(--color-material-accent) !important;
+}
+/* Hover 状态 */
+li[class^="MenuItem-"]:hover,
+#content-container [class^="ListItemContainer-"]:hover,
+.ant-segmented-group .ant-segmented-item-label:not([aria-selected="true"]):hover {
+  background-color: rgba(var(--color-black-rgb), .1) !important;
+  color: var(--color-text-1);
+}
+/* 侧边栏图标 */
+#app-sidebar [class^="Icon-"] {
+  transition: box-shadow var(--duration-fast) var(--easing-ease), background var(--duration-fast) var(--easing-ease), border var(--duration-fast) var(--easing-ease), color var(--duration-fast) var(--easing-ease);
+}
+
+#app-sidebar [class^="Icon-"].active {
+  box-shadow: var(--chat-customize-box-shadow3) !important;
+  background: transparent !important;
+  border: none !important;
+  color: var(--color-material-accent-bright) !important;
+  position: relative;
+}
+/* --- 设置分组 / 分段选择器 容器 --- */
+div[class^="SettingGroup-"] .ant-segmented,
+div[class^="SettingContainer-"] div[class^="SettingGroup-"],
+.ant-segmented.ant-segmented-shape-round {
+  border-radius: var(--container-border-radius) !important;
+  background-color: var(--color-background-opacity) !important;
+  box-shadow: var(--chat-customize-box-shadow) !important;
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+  transition: background-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease), border-color var(--duration-normal) var(--easing-ease);
+}
+
+.ant-segmented-thumb,
+label.ant-segmented-item.ant-segmented-item-selected {
+  background-color: transparent !important;
+  border: transparent !important;
+}
+
+.ant-segmented-thumb-motion-appear-active {
+  display: none !important;
+}
+/* 折叠面板 */
+.ant-collapse-item {
+  margin-bottom: 1rem;
+}
+
+.ant-collapse-header {
+  background-color: var(--color-background-soft) !important;
+  border-radius: 0 !important;
+  border-bottom: none;
+  color: var(--color-text-1);
+  position: relative;
+  padding: 16px;
+  transition: background-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+
+.ant-collapse-content {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+
+.ant-collapse-content-box {
+  background-color: rgba(var(--color-background-rgb), .1) !important;
+  border-radius: 0 !important;
+  padding: 16px;
+  color: var(--color-text-1);
+  transition: background-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+
+.ant-collapse,
+.ant-collapse-borderless {
+  border: none !important;
+  background: transparent !important;
+}
+/* 输入框（模态框内） */
+.ant-modal-body .ant-input-affix-wrapper {
+  background-color: var(--color-background-mute) !important;
+  box-shadow: var(--chat-customize-box-shadow4) !important;
+  border: none;
+  border-radius: var(--list-item-border-radius) !important;
+  position: relative;
+  overflow: hidden;
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+  transition: background-color var(--duration-fast) var(--easing-ease), box-shadow var(--duration-fast) var(--easing-ease), border-color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-modal-body .ant-input-affix-wrapper input {
+  background: transparent !important;
+  color: var(--color-text-1) !important;
+}
+
+.ant-modal-body .ant-input-affix-wrapper-focused {
+  background-color: var(--color-background-mute) !important;
+  box-shadow: var(--chat-customize-box-shadow4),
+    0 0 0 2px rgba(var(--color-material-accent-rgb), .3) !important;
+  border-color: var(--color-material-accent) !important;
+}
+
+div[class^="SearchIcon-"] {
+  background-color: transparent !important;
+  color: var(--color-text-2);
+}
+/* --- Markdown 内容 --- */
+.markdown {
+  color: var(--color-text-1);
+}
+/* Markdown 标题颜色 */
+.markdown h1 {
+  font-size: 2em;
+  border-bottom: 2px solid var(--color-material-accent);
+  padding-bottom: .3em;
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+  position: relative;
+  color: var(--color-material-accent) !important;
+  transition: border-bottom-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+/* H1 底部渐变线 */
+.markdown h1::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  width: 30%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-material-accent));
+  transition: background var(--duration-normal) var(--easing-ease);
+}
+
+.markdown h2 {
+  font-size: 1.5em;
+  border-left: 4px solid var(--color-material-accent-bright);
+  padding-left: 1rem;
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+  position: relative;
+  color: var(--color-material-accent-bright) !important;
+  transition: border-left-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+
+.markdown h3 {
+  font-size: 1.2em;
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+  color: var(--color-material-accent-purple) !important;
+  display: inline-block;
+  background-color: rgba(var(--color-material-accent-purple-rgb), .08);
+  padding: .1em .4em;
+  border-radius: 4px;
+  line-height: 1.5;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  transition: background-color var(--duration-fast) var(--easing-ease), color var(--duration-fast) var(--easing-ease);
+}
+/* H4, H5, H6 */
+.markdown h4,
+.markdown h5,
+.markdown h6 {
+  color: var(--color-text-1) !important;
+  letter-spacing: .08em;
+  margin-bottom: 1em;
+  margin-top: 1.5em;
+  position: relative;
+  transition: color var(--duration-normal) var(--easing-ease);
+}
+
+.markdown h4 {
+  font-size: 1.1em;
+}
+
+.markdown h5 {
+  font-size: 1em;
+}
+
+.markdown h6 {
+  font-size: .9em;
+}
+/* Markdown 引用块 */
+.markdown blockquote {
+  padding: 1rem 1.5rem;
+  margin: 1.5rem 0;
+  background-color: rgba(var(--color-material-accent-purple-rgb), .12);
+  font-style: italic;
+  color: var(--color-text-2);
+  position: relative;
+  border: 1px solid var(--color-material-accent-purple);
+  border-left: 4px solid var(--color-material-accent-purple);
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow);
+  overflow: hidden;
+  transition: background-color var(--duration-normal) var(--easing-ease), border-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease);
+}
+/* Markdown 粗体/斜体 */
+.markdown strong,
+.markdown b {
+  font-weight: bold !important;
+  color: var(--color-text-1);
+  background-color: rgba(var(--color-material-accent-rgb), .08);
+  padding: .1em .4em;
+  margin: 0 .1em;
+  border-radius: 4px;
+  line-height: 1.5;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+
+.markdown em,
+.markdown i {
+  font-style: italic;
+  color: var(--color-text-2);
+  background-color: rgba(var(--color-material-accent-purple-rgb), .06);
+  padding: .1em .4em;
+  margin: 0 .1em;
+  border-radius: 4px;
+  border: 1px solid rgba(var(--color-material-accent-purple-rgb), .08);
+  line-height: 1.5;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+}
+/* Markdown 代码块内部 Shiki */
+.markdown pre .shiki {
+  border: none !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+/* Markdown 代码块 (pre) */
+.markdown pre {
+  padding: 0 !important;
+  border-radius: var(--container-border-radius) !important;
+  background: none !important;
+  box-shadow: none !important;
+  margin: 1.5rem 0;
+  overflow: hidden;
+  position: relative;
+}
+/* --- 代码块 Wrapper 和 Table --- */
+.markdown pre [class^="CodeBlockWrapper-"],
+.markdown table {
+  border-radius: var(--container-border-radius) !important;
+  box-shadow: var(--chat-customize-box-shadow) !important;
+  overflow: hidden;
+  border: var(--material-line-width) solid var(--color-material-line-dim);
+  position: relative;
+  background-color: var(--color-background-opacity) !important;
+  transition: background-color var(--duration-normal) var(--easing-ease), box-shadow var(--duration-normal) var(--easing-ease), border-color var(--duration-normal) var(--easing-ease);
+}
+
+.markdown table {
+  margin: 1.5rem 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+/* --- Table Header --- */
+.markdown th,
+.ant-table-thead>tr>th {
+  background-color: rgba(var(--color-material-accent-rgb), .1) !important;
+  border-bottom: 1px solid var(--color-material-accent) !important;
+  color: var(--color-text-1);
+  padding: .75rem;
+  border-left: 1px solid rgba(var(--color-material-accent-rgb), .2);
+  text-align: left;
+  position: relative;
+  transition: background-color var(--duration-normal) var(--easing-ease), border-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+
+.markdown th:first-child,
+.ant-table-thead>tr>th:first-child {
+  border-left: none;
+  padding-left: .75rem;
+}
+/* --- Table Data --- */
+.markdown td,
+.ant-table-tbody>tr>td {
+  padding: .75rem;
+  border-bottom: 1px solid rgba(var(--color-material-accent-rgb), .2) !important;
+  border-left: 1px solid rgba(var(--color-material-accent-rgb), .2);
+  color: var(--color-text-1);
+  transition: border-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+
+.markdown td:first-child,
+.ant-table-tbody>tr>td:first-child {
+  border-left: none;
+  padding-left: .75rem;
+}
+
+.markdown tr:last-child td,
+.ant-table-tbody>tr:last-child>td {
+  border-bottom: none !important;
+  padding-bottom: .75rem;
+}
+/* Markdown 代码块 Header */
+.markdown pre [class^="CodeHeader-"] {
+  border-radius: 0 !important;
+  background-color: rgba(var(--color-black-rgb), .9) !important;
+  background-image: none !important;
+  border-bottom: none;
+  margin-bottom: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-2);
+  padding: 8px 16px;
+  position: relative;
+  overflow: hidden;
+  padding-left: 60px;
+  transition: background-color var(--duration-normal) var(--easing-ease), color var(--duration-normal) var(--easing-ease);
+}
+/* 交通灯圆点 */
+.markdown pre [class^="CodeHeader-"]::before {
+  content: ' ';
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 16px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgb(252,
+    132,
+    170);
+  box-shadow: 20px 0 rgb(147,
+    243,
+    230),
+    40px 0 rgb(132,
+    205,
+    143);
+  z-index: 1;
+}
+/* 渐变线 */
+.markdown pre [class^="CodeHeader-"]::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-material-accent), transparent);
+  opacity: .8;
+  z-index: 1;
+  transition: background var(--duration-normal) var(--easing-ease);
+}
+/* Markdown 代码块 Content */
+.markdown pre [class^="CodeContent-"] {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+  border-top: none !important;
+  margin-top: 0 !important;
+  padding: 16px;
+}
+/* Markdown 列表/HR */
+.markdown ul li::marker,
+.markdown ol li::marker {
+  color: var(--color-material-accent);
+  transition: color var(--duration-fast) var(--easing-ease);
+}
+
+.markdown hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-material-accent), transparent);
+  margin: 2rem 0;
+  opacity: .4;
+  position: relative;
+  transition: background var(--duration-normal) var(--easing-ease);
+}
+/* HR 圆点 */
+.markdown hr::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,
+    -50%);
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-material-accent);
+  border-radius: 50%;
+  z-index: 1;
+  transition: background-color var(--duration-normal) var(--easing-ease);
+}
+/* 链接 */
+a {
+  color: var(--color-material-accent) !important;
+  text-decoration: none;
+  position: relative;
+  transition: color var(--duration-fast) var(--easing-ease);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--color-material-accent-bright) !important;
+}
+/* 侧边栏图标（Home） */
+.home-sidebar .anticon,
+.home-sidebar .iconfont {
+  color: var(--color-text-1) !important;
+  font-size: 24px !important;
+}
+/* 表单控件 */
+.ant-switch {
+  transition: background-color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-switch-checked {
+  background-color: var(--color-material-accent) !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner,
+.ant-checkbox-indeterminate .ant-checkbox-inner {
+  background-color: var(--color-material-accent) !important;
+  border-color: var(--color-material-accent) !important;
+  transition: background-color var(--duration-fast) var(--easing-ease), border-color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus+.ant-checkbox-inner {
+  border-color: var(--color-material-accent) !important;
+}
+
+.ant-checkbox-checked::after {
+  border-color: var(--color-white) !important;
+}
+
+.ant-radio-checked .ant-radio-inner {
+  border-color: var(--color-material-accent) !important;
+  transition: border-color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-radio-inner::after {
+  background-color: var(--color-material-accent) !important;
+  transition: background-color var(--duration-fast) var(--easing-ease);
+}
+
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus+.ant-radio-inner {
+  border-color: var(--color-material-accent) !important;
+}
+/* 选中高亮 */
+::selection {
+  background-color: rgba(var(--color-material-accent-rgb), .2);
+  color: var(--color-white);
+  text-shadow: none;
+  transition: background-color var(--duration-fast) var(--easing-ease), color var(--duration-fast) var(--easing-ease);
+}
+
+body[theme-mode="light"] ::selection {
+  color: var(--color-black);
+}
+
+/* 隐藏原来 header 里的 InfoWrap (这里可能不生效，因为DOM结构中没有完全匹配的选择器) */
+.message-header .message-header + * .InfoWrap,
+.message-header .message-header .anticon + .InfoWrap {
+  display: none !important;
+}
+
+/* --- Token消耗显示样式 --- */
+
+/* 确保消息容器是定位参考点 */
+.message {
+  position: relative !important;
+}
+
+/* 定位 token 信息到气泡右下角 */
+.message-tokens {
+  position: absolute !important;
+  bottom: 8px !important;    /* 与底部的距离 */
+  right: 15px !important;   /* 与右侧的距离 */
+  font-size: 12px !important;
+  line-height: 1.4 !important;
+  color: var(--color-text-2) !important;
+  background: rgba(var(--color-black-rgb), 0.5) !important; /* 半透明背景，提高可读性 */
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  z-index: 10 !important;
+  pointer-events: auto !important; /* 确保可以被点击 */
+}
+/* 从消息头中“提取”token信息，使其可以被正确定位。我们让它的容器不影响布局 */
+.message-header-info-wrap {
+  position: static !important;
+}

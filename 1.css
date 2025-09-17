@@ -1,0 +1,938 @@
+/* ================================
+   CSS变量汇总文件 - CherryStudio主题系统
+   包含所有SCSS文件中的变量定义 + 输入框布局修复
+   ================================ */
+
+/* ================================
+   基础颜色系统 (来自color.scss)
+   ================================ */
+:root {
+  /* 基础颜色 - 透明磨砂质感优化 */
+  --color-white: #ffffff;
+  --color-white-soft: rgba(255, 255, 255, 0.85);
+  --color-white-mute: rgba(255, 255, 255, 0.95);
+
+  --color-black: #000000;
+  --color-black-soft: rgba(15, 20, 25, 0.85); /* 深蓝黑，更柔和 */
+  --color-black-mute: rgba(25, 30, 35, 0.8); /* 透明层次 */
+
+  --color-gray-1: rgba(80, 90, 100, 0.7);
+  --color-gray-2: rgba(60, 70, 80, 0.8);
+  --color-gray-3: rgba(40, 50, 60, 0.9);
+
+  /* 文字颜色 - 按UI视觉规范精确配置 */
+  --color-text-1: #FFFFFF; /* 主要文字：纯白色，最高对比度，用于正文 */
+  --color-text-2: #E8E8E8; /* 次要文字：浅灰色，用于副标题和描述 */
+  --color-text-3: #CCCCCC; /* 静音文字：中灰色，用于提示信息 */
+  --color-text: var(--color-text-1); /* 对比文字：强调色，用于高亮显示 */
+  --color-text-secondary: var(--color-text-2);
+  --color-text-emphasis: #66B3FF; /* 强调文字：蓝色，用于链接和按钮 */
+
+  /* 背景颜色 - 全局透明背景优化 */
+  --color-background: transparent; /* 完全透明主背景 */
+  --color-background-soft: rgba(0, 0, 0, 0.15); /* 轻微黑色遮罩 */
+  --color-background-mute: rgba(0, 0, 0, 0.25); /* 中等黑色遮罩 */
+  --color-background-opacity: rgba(0, 0, 0, 0.35); /* 较深遮罩用于重要区域 */
+  --inner-glow-opacity: 0.2;
+
+  /* 背景图片系统 - 全局背景配置 */
+  --background-image-url: url('https://pub-524c74d893a9420caab9ff60c15618e3.r2.dev/Picgo/CsBG2.jpg');
+  --background-image-size: cover; /* 背景图片尺寸 */
+  --background-image-position: center center; /* 背景图片位置 */
+  --background-image-repeat: no-repeat; /* 背景图片重复 */
+  --background-image-attachment: fixed; /* 背景图片固定 */
+  --background-image-opacity: 1; /* 背景图片透明度 */
+
+  /* 背景磨砂层系统 - 前景背景区分 */
+  --background-overlay: rgba(0, 0, 0, 0.15); /* 深色模式背景遮罩层 */
+  --background-blur: blur(8px) saturate(150%) brightness(1.1); /* 背景磨砂效果 */
+  --background-overlay-blend: normal; /* 混合模式 */
+
+  /* 主色调 - 现代科技蓝 */
+  --color-primary: #148CFF; /* 主蓝色，用于强调 */
+  --color-primary-soft: rgba(20, 140, 255, 0.6);
+  --color-primary-mute: rgba(20, 140, 255, 0.2);
+
+  /* 功能性颜色 - 透明背景适配 */
+  --color-icon: rgba(255, 255, 255, 0.95); /* 图标高可见度 */
+  --color-icon-white: #ffffff;
+  --color-border: rgba(255, 255, 255, 0.4); /* 边框保持可见 */
+  --color-border-soft: rgba(255, 255, 255, 0.25);
+  --color-border-mute: rgba(255, 255, 255, 0.15);
+  --color-error: #FF6B6B; /* 更亮的错误色，透明背景适配 */
+  --color-link: #66B3FF; /* 保持蓝色链接 */
+  --color-code-background: rgba(0, 0, 0, 0.4); /* 代码背景加深 */
+  --color-hover: rgba(255, 255, 255, 0.15); /* 悬停效果 */
+  --color-active: rgba(255, 255, 255, 0.25); /* 激活效果 */
+  --color-frame-border: rgba(255, 255, 255, 0.5); /* 框架边框加强 */
+  --color-group-background: rgba(0, 0, 0, 0.3); /* 组背景 */
+
+  /* 引用和参考 */
+  --color-reference: #404040;
+  --color-reference-text: #ffffff;
+  --color-reference-background: #0b0e12;
+
+  /* 列表项 */
+  --color-list-item: rgba(255, 255, 255, 0.1);
+  --color-list-item-hover: rgba(255, 255, 255, 0.05);
+
+  /* 模态框 */
+  --modal-background: #111111;
+
+  /* 高亮效果 */
+  --color-highlight: rgba(0, 0, 0, 1);
+  --color-background-highlight: rgba(255, 255, 0, 0.9);
+  --color-background-highlight-accent: rgba(255, 150, 50, 0.9);
+
+  /* 导航栏 - 透明背景 */
+  --navbar-background-mac: rgba(0, 0, 0, 0.4);
+  --navbar-background: rgba(0, 0, 0, 0.35);
+
+  /* 布局尺寸 */
+  --navbar-height: 44px;
+  --sidebar-width: 50px;
+  --status-bar-height: 40px;
+  --input-bar-height: 100px;
+  --assistants-width: 275px;
+  --topic-list-width: 275px;
+  --settings-width: 250px;
+  --scrollbar-width: 5px;
+
+  /* 聊天相关 - 透明背景优化 */
+  --chat-background: transparent;
+  --chat-background-user: rgba(20, 140, 255, 0.25); /* 用户消息背景增强 */
+  --chat-background-assistant: rgba(255, 255, 255, 0.12); /* 助手背景增强可见度 */
+  --chat-text-user: #FFFFFF;
+
+  /* 对话框遮罩系统 - 背景区分层 */
+  --dialog-mask-background: rgba(0, 0, 0, 0.25); /* 深色模式对话框遮罩 */
+  --dialog-mask-backdrop: blur(12px) saturate(120%); /* 对话框背景模糊效果 */
+  --dialog-border: rgba(255, 255, 255, 0.2); /* 对话框边框 */
+  --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* 对话框阴影 */
+  --dialog-radius: 16px; /* 对话框圆角 */
+
+  /* 中间内容区域主容器 - 按UI规范第4条实现 */
+  --cl-container-background: rgba(0, 0, 0, 0.25); /* 深色模式主容器背景 */
+  --cl-container-backdrop: blur(16px) saturate(150%) brightness(1.05); /* 主容器强模糊 */
+  --cl-container-border: rgba(255, 255, 255, 0.4); /* 主容器边框 */
+  --cl-container-border-width: 1px; /* 边框宽度 */
+  --cl-container-radius: 16px; /* 主容器圆角 */
+
+  /* 圆角 */
+  --list-item-border-radius: 10px;
+
+  /* 状态颜色 */
+  --color-status-success: green;
+  --color-status-error: var(--color-error);
+  --color-status-warning: #faad14;
+
+  /* ================================
+     字体系统 - 全局优化方案
+     ================================ */
+  
+  /* 主字体栈 - 现代化无衬线字体 */
+  --font-family:
+    "SF Pro Display", "Inter", "PingFang SC", "Noto Sans SC", "Microsoft YaHei UI", 
+    -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, "Helvetica Neue", 
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* 衬线字体栈 - 阅读优化 */
+  --font-family-serif:
+    "SF Pro Text", "Times New Roman", "Noto Serif SC", "Source Han Serif SC", 
+    Georgia, serif, "Apple Color Emoji", "Segoe UI Emoji";
+
+  /* 代码字体栈 - 编程优化 */
+  --code-font-family: 
+    "JetBrains Mono", "SF Mono", "Cascadia Code", "Fira Code", "Source Code Pro", 
+    "Consolas", "Monaco", "Menlo", monospace;
+
+  /* 字体权重系统 - 深色模式优化（按UI规范） */
+  --font-weight-light: 300;
+  --font-weight-normal: 500; /* 深色模式使用500权重 */
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* 字体尺寸系统 */
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.875rem;    /* 14px */
+  --font-size-base: 1rem;      /* 16px */
+  --font-size-lg: 1.125rem;    /* 18px */
+  --font-size-xl: 1.25rem;     /* 20px */
+  --font-size-2xl: 1.5rem;     /* 24px */
+  --font-size-3xl: 1.875rem;   /* 30px */
+  
+  /* 行高系统 */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+  /* ================================
+     滚动条系统 (来自scrollbar.scss)
+     ================================ */
+  --color-scrollbar-thumb-dark: rgba(255, 255, 255, 0.15);
+  --color-scrollbar-thumb-dark-hover: rgba(255, 255, 255, 0.2);
+  --color-scrollbar-thumb-light: rgba(0, 0, 0, 0.15);
+  --color-scrollbar-thumb-light-hover: rgba(0, 0, 0, 0.2);
+  --color-scrollbar-thumb: var(--color-scrollbar-thumb-dark);
+  --color-scrollbar-thumb-hover: var(--color-scrollbar-thumb-dark-hover);
+  --scrollbar-thumb-radius: 10px;
+
+  /* ================================
+     动画系统 (来自animation.scss)
+     ================================ */
+  --pulse-color: 59, 130, 246;
+  --pulse-size: 8px;
+
+  /* ================================
+     选择工具栏 (来自selection-toolbar.scss)
+     ================================ */
+  --selection-toolbar-color-primary: var(--color-primary);
+  --selection-toolbar-color-error: var(--color-error);
+  --selection-toolbar-height: 36px;
+  --selection-toolbar-font-size: 14px;
+  --selection-toolbar-logo-display: flex;
+  --selection-toolbar-logo-size: 22px;
+  --selection-toolbar-logo-border-width: 0.5px 0 0.5px 0.5px;
+  --selection-toolbar-logo-border-style: solid;
+  --selection-toolbar-logo-border-color: rgba(255, 255, 255, 0.2);
+  --selection-toolbar-logo-margin: 0;
+  --selection-toolbar-logo-padding: 0 6px 0 8px;
+  --selection-toolbar-logo-background: transparent;
+  --selection-toolbar-padding: 0;
+  --selection-toolbar-margin: 2px 3px 5px 3px;
+  --selection-toolbar-border-radius: 10px;
+  --selection-toolbar-border: none;
+  --selection-toolbar-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.3);
+  --selection-toolbar-background: rgba(20, 20, 20, 0.95);
+  --selection-toolbar-buttons-border-width: 0.5px 0.5px 0.5px 0;
+  --selection-toolbar-buttons-border-style: solid;
+  --selection-toolbar-buttons-border-color: rgba(255, 255, 255, 0.2);
+  --selection-toolbar-buttons-border-radius: 0 var(--selection-toolbar-border-radius) var(--selection-toolbar-border-radius) 0;
+  --selection-toolbar-button-icon-size: 16px;
+  --selection-toolbar-button-direction: row;
+  --selection-toolbar-button-text-margin: 0 0 0 0;
+  --selection-toolbar-button-margin: 0;
+  --selection-toolbar-button-padding: 0 8px;
+  --selection-toolbar-button-last-padding: 0 12px 0 8px;
+  --selection-toolbar-button-border-radius: 0;
+  --selection-toolbar-button-border: none;
+  --selection-toolbar-button-box-shadow: none;
+  --selection-toolbar-button-text-color: rgba(255, 255, 245, 0.9);
+  --selection-toolbar-button-icon-color: var(--selection-toolbar-button-text-color);
+  --selection-toolbar-button-text-color-hover: var(--selection-toolbar-color-primary);
+  --selection-toolbar-button-icon-color-hover: var(--selection-toolbar-color-primary);
+  --selection-toolbar-button-bgcolor: transparent;
+  --selection-toolbar-button-bgcolor-hover: #333333;
+
+  /* ================================
+     原始主题变量 (保留兼容性) - 移除字体冲突
+     ================================ */
+  /* font-family: "汉仪唐美人" !important; 注释掉以避免字体冲突 */
+}
+
+/* ================================
+   浅色主题覆盖 (来自color.scss)
+   ================================ */
+[theme-mode='light'] {
+  --color-white: #ffffff;
+  --color-white-soft: rgba(255, 255, 255, 0.8);
+  --color-white-mute: rgba(255, 255, 255, 0.95);
+
+  --color-black: #1b1b1f;
+  --color-black-soft: #262626;
+  --color-black-mute: #363636;
+
+  --color-gray-1: #8e8e93;
+  --color-gray-2: #aeaeb2;
+  --color-gray-3: #c7c7cc;
+
+  /* 浅色模式文字颜色 - 按UI视觉规范精确配置 */
+  --color-text-1: #1A1A1A; /* 主要文字：深色，确保高对比度阅读 */
+  --color-text-2: #4A4A4A; /* 次要文字：中等深度，用于副标题 */
+  --color-text-3: #767676; /* 静音文字：灰色，用于辅助信息 */
+  --color-text: var(--color-text-1); /* 对比文字：纯黑色，用于强调 */
+  --color-text-secondary: var(--color-text-2);
+  --color-text-emphasis: #0066CC; /* 强调文字：深蓝色，用于交互元素 */
+
+  /* 浅色模式背景 - 背景图片适配 */
+  --color-background: transparent;
+  --color-background-soft: rgba(255, 255, 255, 0.25); /* 增强遮罩以提高可读性 */
+  --color-background-mute: rgba(255, 255, 255, 0.35); /* 中等白色遮罩 */
+  --color-background-opacity: rgba(255, 255, 255, 0.5); /* 较深遮罩用于重要区域 */
+  --inner-glow-opacity: 0.15;
+
+  /* 浅色模式背景图片配置 */
+  --background-image-url: var(--background-image-url); /* 继承全局背景图片 */
+  --background-image-opacity: 0.9; /* 浅色模式背景图片轻微降低不透明度 */
+
+  /* 浅色模式背景磨砂层 */
+  --background-overlay: rgba(255, 255, 255, 0.25); /* 浅色模式背景遮罩层 */
+  --background-blur: blur(6px) saturate(120%) brightness(1.05); /* 浅色模式背景磨砂效果 */
+
+  /* 浅色模式功能性颜色 - 透明背景适配 */
+  --color-icon: rgba(0, 0, 0, 0.8); /* 黑色图标高可见度 */
+  --color-icon-white: #000000;
+  --color-border: rgba(0, 0, 0, 0.3); /* 边框保持可见 */
+  --color-border-soft: rgba(0, 0, 0, 0.15);
+  --color-border-mute: rgba(0, 0, 0, 0.08);
+  --color-link: #1677ff;
+  --color-code-background: rgba(0, 0, 0, 0.08); /* 代码背景加深 */
+  --color-hover: rgba(0, 0, 0, 0.08); /* 悬停效果 */
+  --color-active: rgba(0, 0, 0, 0.12); /* 激活效果 */
+  --color-frame-border: rgba(0, 0, 0, 0.25); /* 框架边框 */
+  --color-group-background: rgba(255, 255, 255, 0.3); /* 组背景 */
+
+  --color-reference: #cfe1ff;
+  --color-reference-text: #000000;
+  --color-reference-background: #f1f7ff;
+
+  --color-list-item: #fff;
+  --color-list-item-hover: #fafafa;
+
+  --modal-background: var(--color-white);
+
+  --color-highlight: initial;
+  --color-background-highlight: rgba(255, 255, 0, 0.5);
+  --color-background-highlight-accent: rgba(255, 150, 50, 0.5);
+
+  /* 浅色模式导航栏 - 透明背景 */
+  --navbar-background-mac: rgba(255, 255, 255, 0.4);
+  --navbar-background: rgba(255, 255, 255, 0.35);
+
+  /* 浅色模式聊天 - 透明背景 */
+  --chat-background: transparent;
+  --chat-background-user: rgba(20, 140, 255, 0.15); /* 用户消息背景 */
+  --chat-background-assistant: rgba(0, 0, 0, 0.05); /* 助手背景轻微阴影 */
+  --chat-text-user: var(--color-text);
+
+  /* 浅色模式对话框遮罩系统 */
+  --dialog-mask-background: rgba(255, 255, 255, 0.3); /* 浅色模式对话框遮罩 */
+  --dialog-mask-backdrop: blur(12px) saturate(120%); /* 对话框背景模糊效果 */
+  --dialog-border: rgba(0, 0, 0, 0.15); /* 对话框边框 */
+  --dialog-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); /* 对话框阴影 */
+
+  /* 浅色模式中间内容区域主容器 */
+  --cl-container-background: rgba(255, 255, 255, 0.75); /* 浅色模式主容器背景 */
+  --cl-container-backdrop: blur(12px) saturate(130%) brightness(1.02); /* 主容器适中模糊 */
+  --cl-container-border: rgba(255, 255, 255, 0.6); /* 浅色模式主容器边框 */
+
+  /* 字体权重 - 浅色模式优化（按UI规范） */
+  --font-weight-light: 300;
+  --font-weight-normal: 600; /* 浅色模式使用600权重 */
+  --font-weight-medium: 600;
+  --font-weight-semibold: 700;
+  --font-weight-bold: 800;
+
+  /* 滚动条浅色模式 */
+  --color-scrollbar-thumb: var(--color-scrollbar-thumb-light);
+  --color-scrollbar-thumb-hover: var(--color-scrollbar-thumb-light-hover);
+
+  /* 选择工具栏浅色模式 */
+  --selection-toolbar-border: none;
+  --selection-toolbar-box-shadow: 0px 2px 3px rgba(50, 50, 50, 0.1);
+  --selection-toolbar-background: rgba(245, 245, 245, 0.95);
+  --selection-toolbar-buttons-border-color: rgba(0, 0, 0, 0.08);
+  --selection-toolbar-logo-border-color: rgba(0, 0, 0, 0.08);
+  --selection-toolbar-button-text-color: rgba(0, 0, 0, 1);
+  --selection-toolbar-button-icon-color: var(--selection-toolbar-button-text-color);
+  --selection-toolbar-button-text-color-hover: var(--selection-toolbar-color-primary);
+  --selection-toolbar-button-icon-color-hover: var(--selection-toolbar-color-primary);
+  --selection-toolbar-button-bgcolor-hover: rgba(0, 0, 0, 0.04);
+}
+
+/* ================================
+   导航栏位置相关 (来自color.scss)
+   ================================ */
+[navbar-position='left'] {
+  --navbar-height: 44px; /* 修正为44px */
+  --list-item-border-radius: 20px;
+}
+
+[navbar-position='left'][theme-mode='light'] {
+  --color-list-item: #eee;
+  --color-list-item-hover: #f5f5f5;
+}
+
+[navbar-position='left'][theme-mode='dark'] {
+  --color-list-item: #252525;
+  --color-list-item-hover: #1e1e1e;
+}
+
+/* Windows系统专用字体配置 - 优化中文显示 */
+body[os='windows'] {
+  --font-family:
+    "Segoe UI", "Microsoft YaHei UI", "PingFang SC", "Noto Sans SC", 
+    "SF Pro Display", "Inter", system-ui, sans-serif, "Segoe UI Emoji";
+
+  --code-font-family:
+    "Cascadia Code", "Consolas", "JetBrains Mono", "Sarasa Mono SC", 
+    "Microsoft YaHei UI", monospace;
+}
+
+/* ================================
+   输入框布局修复 - 关键修复
+   ================================ */
+
+/* 输入框容器 - 垂直布局确保图标在下方 */
+.inputbar-container {
+  display: flex;
+  flex-direction: column; /* 关键：垂直布局 */
+  height: var(--input-bar-height);
+  min-height: var(--input-bar-height);
+  padding: 0.75rem 1rem;
+  box-sizing: border-box;
+}
+
+/* 输入区域容器 */
+.inputbar-container .input-area,
+.inputbar-container .text-input-area,
+.inputbar-container .main-input,
+.inputbar-container > div:first-child {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+  margin-bottom: 0.5rem;
+}
+
+/* 图标工具栏区域 - 确保在底部 */
+.inputbar-container .toolbar,
+.inputbar-container .icon-toolbar,
+.inputbar-container .action-buttons,
+.inputbar-container .input-toolbar,
+.inputbar-container > div:last-child {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  height: auto;
+  min-height: 32px;
+  margin-top: auto; /* 推到底部 */
+  padding: 0;
+}
+
+/* 图标按钮样式 */
+.inputbar-container .toolbar button,
+.inputbar-container .icon-toolbar button,
+.inputbar-container .action-buttons button,
+.inputbar-container button[class*="icon"],
+.inputbar-container [class*="icon"] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  min-width: 28px;
+  padding: 0.25rem;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-icon);
+  cursor: pointer;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.inputbar-container .toolbar button:hover,
+.inputbar-container .icon-toolbar button:hover,
+.inputbar-container .action-buttons button:hover,
+.inputbar-container button[class*="icon"]:hover,
+.inputbar-container [class*="icon"]:hover {
+  background: var(--color-hover);
+  color: var(--color-link);
+}
+
+/* ================================
+   深色主题详细配置 (保持原有功能)
+   ================================ */
+body[theme-mode="dark"] {
+  /* 深色模式透明背景配置 */
+  --color-background: transparent;
+  --color-background-soft: rgba(0, 0, 0, 0.2);
+  --color-background-mute: rgba(0, 0, 0, 0.3);
+  --navbar-background: rgba(0, 0, 0, 0.4);
+  --chat-background: transparent;
+  --chat-background-user: rgba(20, 140, 255, 0.3);
+  --chat-background-assistant: rgba(255, 255, 255, 0.15);
+}
+
+/* 深色模式背景图片增强 */
+body[theme-mode="dark"] {
+  background: var(--background-image-url) var(--background-image-position) / var(--background-image-size) var(--background-image-repeat);
+  background-attachment: var(--background-image-attachment);
+}
+
+/* 深色模式背景磨砂层 */
+body[theme-mode="dark"]::before {
+  background: var(--background-overlay);
+  backdrop-filter: var(--background-blur);
+}
+
+body[theme-mode="dark"] .inputbar-container {
+  flex-direction: column;
+  background-color: rgba(0, 0, 0, 0.4); /* 透明黑色背景 */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  backdrop-filter: blur(16px) saturate(150%); /* 增强磨砂效果 */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); /* 添加阴影增强层次 */
+}
+
+body[theme-mode="dark"] code {
+  background-color: #e5e5e20d;
+  color: #ea928a;
+}
+
+body[theme-mode="dark"] pre code {
+  color: #abb2bf;
+}
+
+/* ================================
+   浅色主题详细配置 (保持原有功能)
+   ================================ */
+body[theme-mode="light"] {
+  /* 浅色模式透明背景配置 */
+  --color-background: transparent;
+  --color-background-soft: rgba(255, 255, 255, 0.2);
+  --color-background-mute: rgba(255, 255, 255, 0.3);
+  --navbar-background: rgba(255, 255, 255, 0.4);
+  --chat-background: transparent;
+  --chat-background-user: rgba(20, 140, 255, 0.15);
+  --chat-background-assistant: rgba(0, 0, 0, 0.05);
+}
+
+/* 浅色模式背景图片增强 */
+body[theme-mode="light"] {
+  background: var(--background-image-url) var(--background-image-position) / var(--background-image-size) var(--background-image-repeat);
+  background-attachment: var(--background-image-attachment);
+  /* 浅色模式可选背景遮罩增强可读性 */
+  position: relative;
+}
+
+/* 浅色模式背景磨砂层 */
+body[theme-mode="light"]::before {
+  background: var(--background-overlay);
+  backdrop-filter: var(--background-blur);
+}
+
+body[theme-mode="light"] .inputbar-container {
+  flex-direction: column;
+  background-color: rgba(255, 255, 255, 0.5); /* 透明白色背景 */
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(16px) saturate(150%); /* 增强磨砂效果 */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 添加轻微阴影 */
+}
+
+body[theme-mode="light"] code {
+  background-color: #3d39290d;
+  color: #7c1b13;
+}
+
+body[theme-mode="light"] pre code {
+  color: #000000;
+}
+
+/* ================================
+   特殊样式和兼容性配置
+   ================================ */
+
+/* 深度思考展开字体颜色 */
+.ant-collapse-content-box .markdown {
+  color: red;
+}
+
+/* ================================
+   全局字体应用规则 + 透明背景增强
+   ================================ */
+
+/* 基础字体应用 + 全局背景图片 + 磨砂层 */
+body, html {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* 全局背景图片配置 */
+  background: var(--background-image-url) var(--background-image-position) / var(--background-image-size) var(--background-image-repeat);
+  background-attachment: var(--background-image-attachment);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+/* 背景磨砂层 - 前景背景区分 */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--background-overlay);
+  backdrop-filter: var(--background-blur);
+  mix-blend-mode: var(--background-overlay-blend);
+  pointer-events: none;
+  z-index: -1;
+  /* 性能优化 */
+  will-change: backdrop-filter;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* 根元素背景图片应用 */
+#root, #app, .app-container {
+  background: transparent;
+  min-height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* 确保主容器透明，显示背景图片 */
+.main-container, .content-container, .workspace {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+/* 透明背景增强样式 */
+.glass-effect {
+  backdrop-filter: blur(20px) saturate(180%) brightness(1.1);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+[theme-mode='light'] .glass-effect {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* 文字阴影增强可读性 */
+.text-shadow-dark {
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.text-shadow-light {
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* 标题字体 */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-base); }
+h6 { font-size: var(--font-size-sm); }
+
+/* 代码字体应用 */
+code, pre, .code, [class*="code"] {
+  font-family: var(--code-font-family) !important;
+  font-variant-ligatures: normal;
+  font-feature-settings: "liga" 1, "calt" 1;
+}
+
+/* 按钮和输入框字体 */
+button, input, textarea, select {
+  font-family: var(--font-family);
+  font-weight: var(--font-weight-normal);
+}
+
+/* 小字体文本 */
+.text-xs { font-size: var(--font-size-xs); }
+.text-sm { font-size: var(--font-size-sm); }
+.text-lg { font-size: var(--font-size-lg); }
+.text-xl { font-size: var(--font-size-xl); }
+
+/* 字体权重类 */
+.font-light { font-weight: var(--font-weight-light); }
+.font-normal { font-weight: var(--font-weight-normal); }
+.font-medium { font-weight: var(--font-weight-medium); }
+.font-semibold { font-weight: var(--font-weight-semibold); }
+.font-bold { font-weight: var(--font-weight-bold); }
+
+/* ================================
+   背景磨砂效果性能优化与回退方案
+   ================================ */
+
+/* 低性能设备回退方案 - 禁用backdrop-filter */
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body[theme-mode="dark"]::before,
+  body[theme-mode="light"]::before {
+    backdrop-filter: none !important;
+    background: var(--background-overlay) !important;
+  }
+}
+
+/* 高对比度模式支持 */
+@media (prefers-contrast: high) {
+  :root {
+    --background-overlay: rgba(0, 0, 0, 0.4); /* 增强对比度 */
+  }
+  
+  [theme-mode='light'] {
+    --background-overlay: rgba(255, 255, 255, 0.6); /* 浅色模式增强对比度 */
+  }
+  
+  body::before,
+  body[theme-mode="dark"]::before,
+  body[theme-mode="light"]::before {
+    backdrop-filter: none !important;
+    background: var(--background-overlay) !important;
+  }
+}
+
+/* 支持backdrop-filter的现代浏览器性能优化 */
+@supports (backdrop-filter: blur(1px)) {
+  body::before,
+  body[theme-mode="dark"]::before,
+  body[theme-mode="light"]::before {
+    /* GPU硬件加速 */
+    will-change: backdrop-filter, transform;
+    transform: translateZ(0);
+    contain: layout style paint;
+    /* 优化渲染性能 */
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
+/* ================================
+   中间内容区域主容器 - 按UI规范第4条实现
+   ================================ */
+
+/* 主内容区域容器 - 单一主容器应用模糊透明背景层 */
+.main-content, .content-area, .chat-container, 
+.messages-container, .conversation-area {
+  background: var(--cl-container-background);
+  backdrop-filter: var(--cl-container-backdrop);
+  border: var(--cl-container-border-width) solid var(--cl-container-border);
+  border-radius: var(--cl-container-radius);
+  margin: 16px;
+  padding: 24px;
+  position: relative;
+  z-index: 2;
+  
+  /* 性能优化 - 启用硬件加速 */
+  will-change: backdrop-filter, transform;
+  transform: translateZ(0);
+  contain: layout style paint;
+}
+
+/* 聊天消息列表区域优化 */
+.chat-messages, .message-list, .conversation-list {
+  background: transparent; /* 内部子容器设为透明背景无边框 */
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* 单个消息容器优化 */
+.chat-message {
+  background: var(--dialog-mask-background);
+  backdrop-filter: var(--dialog-mask-backdrop);
+  border: 1px solid var(--dialog-border);
+  border-radius: 12px;
+  margin: 8px 0;
+  padding: 16px 20px;
+  position: relative;
+  
+  /* 按规范设置垂直间隔 */
+  margin-bottom: 16px; /* 基础间隔 */
+}
+
+/* 不同角色消息间隔优化 */
+.user-message + .assistant-message,
+.assistant-message + .user-message {
+  margin-top: 24px; /* 不同角色消息间间隔2四像素 */
+}
+
+/* 相同角色连续消息间隔 */
+.user-message + .user-message,
+.assistant-message + .assistant-message {
+  margin-top: 8px; /* 相同角色连续消息间间隔8px */
+}
+
+/* 用户消息右侧对齐 */
+.user-message {
+  background: var(--chat-background-user);
+  border-color: var(--color-primary-soft);
+  margin-left: auto;
+  margin-right: 0;
+  max-width: 80%;
+  text-align: left; /* 内容左对齐，容器右对齐 */
+}
+
+/* 助手消息左侧对齐 */
+.assistant-message {
+  background: var(--chat-background-assistant);
+  margin-left: 0;
+  margin-right: auto;
+  max-width: 80%;
+  text-align: left;
+}
+
+/* 核心对话框遮罩样式 - 只针对主要组件 */
+.modal, .dialog, .popup {
+  background: var(--dialog-mask-background);
+  backdrop-filter: var(--dialog-mask-backdrop);
+  border: 1px solid var(--dialog-border);
+  border-radius: var(--dialog-radius);
+  box-shadow: var(--dialog-shadow);
+}
+
+/* 聊天消息容器 - 只对主要聊天组件生效 */
+.chat-message {
+  background: var(--dialog-mask-background);
+  backdrop-filter: var(--dialog-mask-backdrop);
+  border: 1px solid var(--dialog-border);
+  border-radius: 12px;
+  margin: 8px 0;
+  padding: 12px 16px;
+}
+
+/* 用户和助手消息特定样式 */
+.user-message {
+  background: var(--chat-background-user);
+  border-color: rgba(20, 140, 255, 0.3);
+}
+
+.assistant-message {
+  background: var(--chat-background-assistant);
+}
+
+/* 输入框容器特定遮罩 - 保留原有样式 */
+.inputbar-container {
+  /* 由主题模式样式处理，不在此处覆盖 */
+}
+
+/* ================================
+   精简UI框架组件支持 - 只对必要组件应用
+   ================================ */
+
+/* 只对主要的Ant Design对话框组件应用遮罩 */
+.ant-modal-content, .ant-drawer-content {
+  background: var(--dialog-mask-background);
+  backdrop-filter: var(--dialog-mask-backdrop);
+  border-color: var(--dialog-border);
+}
+
+/* ================================
+   对话内容区域透明化 - 确保全局透明磨砂背景效果
+   ================================ */
+
+/* Markdown内容组件透明化 */
+.markdown, .markdown-content, .md-content,
+.prose, .content, .article, .markdown-body {
+  background: transparent !important;
+  color: inherit; /* 继承父容器文字颜色 */
+}
+
+/* 代码块透明化 */
+pre, code, .code-block, .highlight,
+.hljs, .prism, .syntax-highlight,
+.codehilite, .sourceCode {
+  background: transparent !important;
+  color: inherit;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 内联代码特殊处理 */
+code:not(pre code) {
+  background: rgba(255, 255, 255, 0.1) !important;
+  padding: 2px 4px;
+  border-radius: 4px;
+  font-family: var(--code-font-family);
+}
+
+/* 引用块透明化与优化 */
+blockquote, .quote, .citation {
+  background: transparent !important;
+  border-left: 3px solid var(--color-border);
+  padding-left: 16px;
+  margin: 16px 0;
+  font-style: italic;
+  color: var(--color-text-2); /* 使用次要文字颜色 */
+}
+
+/* 表格组件透明化 */
+table, .table, .data-table {
+  background: transparent !important;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td, .table-cell {
+  background: transparent !important;
+  border: 1px solid var(--color-border);
+  padding: 8px 12px;
+}
+
+th {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-1);
+}
+
+/* 列表组件透明化 */
+ul, ol, li, .list, .list-item {
+  background: transparent !important;
+}
+
+ul, ol {
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+li {
+  margin: 4px 0;
+  line-height: var(--line-height-normal);
+}
+
+/* 分割线和间隔组件 */
+hr, .divider, .separator {
+  background: transparent !important;
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 24px 0;
+}
+
+/* 标题组件优化 */
+h1, h2, h3, h4, h5, h6 {
+  background: transparent !important;
+  color: var(--color-text-1);
+  font-weight: var(--font-weight-semibold);
+  margin: 20px 0 12px 0;
+  line-height: var(--line-height-tight);
+}
+
+/* 段落优化 */
+p {
+  background: transparent !important;
+  color: var(--color-text);
+  line-height: var(--line-height-normal);
+  margin: 12px 0;
+}
+
+/* 链接优化 */
+a, .link {
+  background: transparent !important;
+  color: var(--color-text-emphasis);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+a:hover, .link:hover {
+  border-bottom-color: var(--color-text-emphasis);
+}
